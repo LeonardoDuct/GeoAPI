@@ -1,12 +1,13 @@
+package com.example;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+
 import java.net.URL;
 import org.json.JSONObject;
-
-public class GeocodingAPI {
-    private static final String API_KEY = "SUA_CHAVE_AQUI";
-
+public class GeocodingAPI 
+{
+    private static final String API_KEY = "gIRSOwiPTr4tGE2OMonVLy4LSe0xsnGE";
     public static String getLocation(String address) throws Exception {
         String urlString = "http://www.mapquestapi.com/geocoding/v1/address?key=" + API_KEY + "&location=" + address;
         URL url = new URL(urlString);
@@ -26,7 +27,8 @@ public class GeocodingAPI {
         if (json.getJSONArray("results").length() == 0) {
             throw new Exception("02-Endereço não encontrado para essa localidade.");
         }
-        return json.getJSONArray("results").getJSONObject(0).getJSONArray("locations").getJSONObject(0).getString("latLng");
+        return json.getJSONArray("results").getJSONObject(0).getJSONArray("locations").getJSONObject(0)
+                .getString("latLng");
     }
 
     public static void main(String[] args) {
@@ -38,3 +40,4 @@ public class GeocodingAPI {
         }
     }
 }
+
